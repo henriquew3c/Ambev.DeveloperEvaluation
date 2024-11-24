@@ -1,5 +1,6 @@
-using Ambev.DeveloperEvaluation.Domain.Entities;
-using Ambev.DeveloperEvaluation.Domain.Enums;
+using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
 using Ambev.DeveloperEvaluation.Unit.Domain.Entities.TestData;
 using Xunit;
 
@@ -19,7 +20,7 @@ public class UserTests
     {
         // Arrange
         var user = UserTestData.GenerateValidUser();
-        user.Status = UserStatus.Suspended;
+        user.Suspend();
 
         // Act
         user.Activate();
@@ -36,7 +37,7 @@ public class UserTests
     {
         // Arrange
         var user = UserTestData.GenerateValidUser();
-        user.Status = UserStatus.Active;
+        user.Activate();
 
         // Act
         user.Suspend();
@@ -48,18 +49,18 @@ public class UserTests
     /// <summary>
     /// Tests that validation passes when all user properties are valid.
     /// </summary>
-    [Fact(DisplayName = "Validation should pass for valid user data")]
+    [Fact(DisplayName = "Validation should pass for valid data for creation user")]
     public void Given_ValidUserData_When_Validated_Then_ShouldReturnValid()
     {
         // Arrange
-        var user = UserTestData.GenerateValidUser();
+        var command = UserTestData.GenerateValidCreateUserCommand();
 
         // Act
-        var result = user.Validate();
+        var result = command.Map();
 
         // Assert
         Assert.True(result.IsValid);
-        Assert.Empty(result.Errors);
+        Assert.Empty(result.ValidationResult.Errors);
     }
 
     /// <summary>
@@ -69,7 +70,7 @@ public class UserTests
     public void Given_InvalidUserData_When_Validated_Then_ShouldReturnInvalid()
     {
         // Arrange
-        var user = new User
+        var command = new CreateUserCommand()
         {
             Username = "", // Invalid: empty
             Password = UserTestData.GenerateInvalidPassword(), // Invalid: doesn't meet password requirements
@@ -80,10 +81,10 @@ public class UserTests
         };
 
         // Act
-        var result = user.Validate();
+        var result = command.Map();
 
         // Assert
         Assert.False(result.IsValid);
-        Assert.NotEmpty(result.Errors);
+        Assert.NotEmpty(result.ValidationResult.Errors);
     }
 }

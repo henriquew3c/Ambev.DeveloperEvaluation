@@ -1,14 +1,30 @@
 ﻿using Ambev.DeveloperEvaluation.Common.Validation;
+using FluentValidation.Internal;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace Ambev.DeveloperEvaluation.Domain.Common;
 
-public class BaseEntity : IComparable<BaseEntity>
+public abstract class BaseEntity : IComparable<BaseEntity>
 {
     public Guid Id { get; set; }
 
-    public Task<IEnumerable<ValidationErrorDetail>> ValidateAsync()
+    public bool IsValid { get; private set; }
+
+    public bool IsInvalid => !IsValid;
+
+    public ValidationResult ValidationResult { get; set; }
+
+    public virtual bool Validate<TModel>(TModel model, AbstractValidator<TModel> validator)
     {
-        return Validator.ValidateAsync(this);
+        ValidationResult = validator.Validate(model);
+        return IsValid = ValidationResult.IsValid;
+    }
+
+    public virtual bool Validate<TModel>(TModel model, AbstractValidator<TModel> validator, Action<ValidationStrategy<TModel>> options)
+    {
+        ValidationResult = validator.Validate(model, options);
+        return IsValid = ValidationResult.IsValid;
     }
 
     public int CompareTo(BaseEntity? other)

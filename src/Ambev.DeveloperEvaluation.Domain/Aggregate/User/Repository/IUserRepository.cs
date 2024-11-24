@@ -1,6 +1,6 @@
-using Ambev.DeveloperEvaluation.Domain.Entities;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
 
-namespace Ambev.DeveloperEvaluation.Domain.Repositories;
+namespace Ambev.DeveloperEvaluation.Domain.Aggregate.User.Repository;
 
 /// <summary>
 /// Repository interface for User entity operations

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using FluentValidation;
-using Ambev.DeveloperEvaluation.Domain.Repositories;
-using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Common.Security;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Repository;
 
 namespace Ambev.DeveloperEvaluation.Application.Users.CreateUser;
 
@@ -21,7 +21,6 @@ public class CreateUserHandler : IRequestHandler<CreateUserCommand, CreateUserRe
     /// </summary>
     /// <param name="userRepository">The user repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    /// <param name="validator">The validator for CreateUserCommand</param>
     public CreateUserHandler(IUserRepository userRepository, IMapper mapper, IPasswordHasher passwordHasher)
     {
         _userRepository = userRepository;
@@ -37,18 +36,16 @@ public class CreateUserHandler : IRequestHandler<CreateUserCommand, CreateUserRe
     /// <returns>The created user details</returns>
     public async Task<CreateUserResult> Handle(CreateUserCommand command, CancellationToken cancellationToken)
     {
-        var validator = new CreateUserCommandValidator();
-        var validationResult = await validator.ValidateAsync(command, cancellationToken);
+         var user = command.Map();
 
-        if (!validationResult.IsValid)
-            throw new ValidationException(validationResult.Errors);
+        if (!user.IsValid)
+            throw new ValidationException(user.ValidationResult.Errors);
 
         var existingUser = await _userRepository.GetByEmailAsync(command.Email, cancellationToken);
         if (existingUser != null)
             throw new InvalidOperationException($"User with email {command.Email} already exists");
 
-        var user = _mapper.Map<User>(command);
-        user.Password = _passwordHasher.HashPassword(command.Password);
+        user.SetPassword(_passwordHasher.HashPassword(command.Password));
 
         var createdUser = await _userRepository.CreateAsync(user, cancellationToken);
         var result = _mapper.Map<CreateUserResult>(createdUser);

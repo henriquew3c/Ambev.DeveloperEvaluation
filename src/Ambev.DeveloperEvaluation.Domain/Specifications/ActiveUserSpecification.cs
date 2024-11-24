@@ -1,5 +1,5 @@
-using Ambev.DeveloperEvaluation.Domain.Entities;
-using Ambev.DeveloperEvaluation.Domain.Enums;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
 
 namespace Ambev.DeveloperEvaluation.Domain.Specifications;
 

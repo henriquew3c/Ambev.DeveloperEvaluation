@@ -1,9 +1,9 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using Ambev.DeveloperEvaluation.ORM.Mapping;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
 
 namespace Ambev.DeveloperEvaluation.ORM;
 

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Ambev.DeveloperEvaluation.Domain.Validation;
+namespace Ambev.DeveloperEvaluation.Domain.Aggregate.User.Validations;
 
 public class PhoneValidator : AbstractValidator<string>
 {

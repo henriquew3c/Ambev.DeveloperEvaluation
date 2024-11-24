@@ -1,11 +1,11 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities;
+﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Text.RegularExpressions;
 
 namespace Ambev.DeveloperEvaluation.ORM.Mapping;
 
-public class UserConfiguration : IEntityTypeConfiguration<User>
+public class UserConfiguration : Mapping<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
