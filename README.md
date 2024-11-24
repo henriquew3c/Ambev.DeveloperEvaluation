@@ -41,3 +41,11 @@ Testing:
 Database:
 - **EF Core**: Entity Framework Core, a lightweight, extensible, and cross-platform version of Entity Framework, used for data access and object-relational mapping.
   - Git: https://github.com/dotnet/efcore
+
+## Instructions for use
+
+1) Run docker compose to iniciate the conteiners
+2) Run the command update-database to create tables in database. If it doesn't work look the appsettings conection string. By default the port postgresql 5432 is exposed.
+3) Use swagger (or another toool) to create your user. Post to /api/Users.
+4) Use swagger to get jwt token via auth endpoint. The JWT token is necessary to access the restricted endpoints.
+   
