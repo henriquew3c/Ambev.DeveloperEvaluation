@@ -9,7 +9,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
     {
         public static Sale Map(this CreateSaleCommand request)
         {
-            return SaleFactory.Create(request.UserId, request.Date);
+            return SaleFactory.Create(request.CustomerId, request.Date, request.BranchId);
         }
     }
 }

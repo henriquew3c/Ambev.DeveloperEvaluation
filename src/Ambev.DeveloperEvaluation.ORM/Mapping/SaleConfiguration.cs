@@ -17,6 +17,9 @@ public class SaleConfiguration : Mapping<Sale>
 
         builder.Property(s => s.DiscountPercent).IsRequired();
 
+        builder.Property(s => s.CustomerId).IsRequired();
+        builder.Property(s => s.BranchId).IsRequired();
+
         builder.Property(s => s.TotalAmount).IsRequired().HasColumnType("decimal(18,2)");
         builder.Property(s => s.DiscountAmount).IsRequired().HasColumnType("decimal(18,2)");
 
@@ -28,11 +31,6 @@ public class SaleConfiguration : Mapping<Sale>
             .WithOne()
             .HasForeignKey(x => new { x.SaleId })
             .OnDelete(DeleteBehavior.Cascade);
-
-        builder.HasOne(c => c.User)
-            .WithMany()
-            .HasForeignKey(x => new { x.UserId });
-
 
     }
 }

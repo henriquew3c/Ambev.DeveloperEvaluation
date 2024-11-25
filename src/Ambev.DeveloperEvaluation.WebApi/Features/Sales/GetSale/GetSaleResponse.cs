@@ -15,12 +15,17 @@ public class GetSaleResponse
     /// <summary>
     /// Gets or sets the user id.
     /// </summary>
-    public Guid? UserId { get; set; } = null;
+    public Guid? CustomerId { get; set; } = null;
+
+    /// <summary>
+    /// Gets or sets the branch id.
+    /// </summary>
+    public Guid? BranchId { get; set; } = null;
 
     /// <summary>
     /// Gets or sets the sale date.
     /// </summary>
-    public DateTime? Date { get; set; } = null;
+    public DateTime? CreateAt { get; set; } = null;
 
     /// <summary>
     /// Gets the sale's total.

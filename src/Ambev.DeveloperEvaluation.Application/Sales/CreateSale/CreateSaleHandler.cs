@@ -1,4 +1,5 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Repository;
+﻿using Ambev.DeveloperEvaluation.Common.Extensions;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Repository;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Factory;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository;
@@ -45,6 +46,9 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
         if (!sale.IsValid)
             throw new ValidationException(sale.ValidationResult.Errors);
 
+        ValidateCustomer(command);
+        ValidateBranch(command);
+
         var saleProducts = SaleProductsFactory.Create(command.Products);
 
         if (saleProducts.Any(product => product.IsInvalid))
@@ -52,7 +56,6 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
             var failures = saleProducts.Where(t => t.IsInvalid).Select(x => x.ValidationResult.Errors).ToList().FirstOrDefault();
             throw new ValidationException(failures);
         }
-            
 
         sale = ValidateAndAddProductsIntoSale(sale, saleProducts);
 
@@ -64,6 +67,12 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
         return result;
     }
 
+    /// <summary>
+    /// Validate if products exists and if is valid add into sale
+    /// </summary>
+    /// <param name="sale">The sale in process</param>
+    /// <param name="products">List of the products to add into sale</param>
+    /// <returns>The sale witch products inserted if all valid</returns>
     private Sale? ValidateAndAddProductsIntoSale(Sale? sale, List<SaleProduct> products)
     {
         foreach (var saleProduct in products)
@@ -82,5 +91,39 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
         }
 
         return sale;
+    }
+
+    /// <summary>
+    /// Validate if branch id parameter is one guid valid
+    /// </summary>
+    /// <param name="command">The createCommand request</param>
+    /// <returns>Void</returns>
+    private static void ValidateBranch(CreateSaleCommand command)
+    {
+        if (!command.BranchId.ValidGuid())
+        {
+            throw new ValidationException(
+                new List<ValidationFailure> { new ValidationFailure(command.BranchId, $"Branch id is not valid.") }
+            );
+        }
+
+        //TODO implement relationship witch branch and validate if exists
+    }
+
+    /// <summary>
+    /// Validate if customer id parameter is one guid valid
+    /// </summary>
+    /// <param name="command">The createCommand request</param>
+    /// <returns>Void</returns>
+    private static void ValidateCustomer(CreateSaleCommand command)
+    {
+        if (!command.CustomerId.ValidGuid())
+        {
+            throw new ValidationException(
+                new List<ValidationFailure> { new ValidationFailure(command.CustomerId, $"Customer id is not valid.") }
+            );
+        }
+
+        //TODO implement relationship witch customer and validate if exists
     }
 }

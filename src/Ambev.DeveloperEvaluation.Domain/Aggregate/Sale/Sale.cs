@@ -22,17 +22,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
         /// <summary>
         /// Gets the sale's date.
         /// </summary>
-        public DateTime Date { get; private set; }
-        
-        /// <summary>
-        /// Gets the sale's user id.
-        /// </summary>
-        public Guid UserId { get; private set; }
-
-        /// <summary>
-        /// Gets the sale's user.
-        /// </summary>
-        public User.User User { get; private set; }
+        public DateTime CreateAt { get; private set; }
 
         /// <summary>
         /// Gets the sale's total.
@@ -58,6 +48,27 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
         /// The readonly collection of the sale items.
         /// </summary>
         public IReadOnlyCollection<SaleProduct> Products => _products;
+
+        /// <summary>
+        /// Gets the sale's customer id.
+        /// </summary>
+        public Guid CustomerId { get; private set; }
+
+        /// <summary>
+        /// Gets the sale's branch id.
+        /// </summary>
+        public Guid BranchId { get; private set; }
+
+        /// <summary>
+        /// Gets the sale's cancellation date.
+        /// </summary>
+        public DateTime? CancellationAt { get; private set; }
+
+
+        /// <summary>
+        /// Gets the sale's finished date.
+        /// </summary>
+        public DateTime? FinishedAt { get; private set; }
 
         /// <summary>
         /// Verify if sale product exists into sale.
@@ -93,19 +104,26 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
         /// Get new sale.
         /// </summary>
 
-        public Sale(string userId, DateTime date)
+        public Sale(string customerId, DateTime createAt, string branchId)
         {
-            if (!userId.ValidGuid())
+            if (!customerId.ValidGuid())
             {
-                this.ValidationResult.Errors.Add(new ValidationFailure(userId, "Invalid user id."));
+                this.ValidationResult.Errors.Add(new ValidationFailure(customerId, "Invalid user id."));
+                throw new BusinessException();
+            }
+            
+            if (!branchId.ValidGuid())
+            {
+                this.ValidationResult.Errors.Add(new ValidationFailure(branchId, "Invalid branch id."));
                 throw new BusinessException();
             }
 
             Status = SaleStatus.Pending;
             _products = [];
             Number = new Random().Next(1, 10000).ToString();
-            Date = date;
-            UserId = Guid.Parse(userId);
+            CreateAt = createAt;
+            CustomerId = Guid.Parse(customerId);
+            BranchId = Guid.Parse(branchId);
         }
 
 
@@ -132,7 +150,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
         private decimal CalculateTotal()
         {
 
-           return Products.Sum(p => p.Total);
+            return Products.Sum(p => p.Total);
         }
 
 
@@ -147,7 +165,19 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
 
         public Sale()
         {
-            
+
+        }
+
+        public void Cancel()
+        {
+            Status = SaleStatus.Cancelled;
+            CancellationAt = DateTime.Now;
+        }
+
+        public void Finish()
+        {
+            Status = SaleStatus.Finish;
+            FinishedAt = DateTime.Now;
         }
     }
 }

@@ -24,7 +24,12 @@ public class CreateSaleCommand : IRequest<CreateSaleResult>
     /// <summary>
     /// Gets or sets the user id.
     /// </summary>
-    public string UserId { get; set; }
+    public string CustomerId { get; set; } 
+    
+    /// <summary>
+    /// Gets or sets the branch id.
+    /// </summary>
+    public string BranchId { get; set; }
 
     /// <summary>
     /// Gets or sets the sale date.

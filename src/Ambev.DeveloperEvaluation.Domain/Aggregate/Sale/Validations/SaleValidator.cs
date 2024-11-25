@@ -7,13 +7,17 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Validations
     {
         public SaleValidator()
         {
-            RuleFor(sale => sale.Date)
+            RuleFor(sale => sale.CreateAt)
                 .NotNull()
                 .WithMessage("Date of the sale cannot be null.");
 
-            RuleFor(sale => sale.UserId)
+            RuleFor(sale => sale.CustomerId)
                 .NotEmpty()
-                .WithMessage("User Id cannot be null.");
+                .WithMessage("Customer Id cannot be null.");
+
+            RuleFor(sale => sale.BranchId)
+                .NotEmpty()
+                .WithMessage("Branch Id cannot be null.");
         }
     }
 }
