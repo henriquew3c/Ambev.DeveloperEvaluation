@@ -3,6 +3,7 @@ using System;
 using Ambev.DeveloperEvaluation.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Ambev.DeveloperEvaluation.ORM.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    partial class DefaultContextModelSnapshot : ModelSnapshot
+    [Migration("20241125021623_CreateSaleAndSaleProductAndProduct")]
+    partial class CreateSaleAndSaleProductAndProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Product", b =>
+            modelBuilder.Entity("Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,21 +52,12 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<decimal>("DiscountAmount")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("DiscountPercent")
-                        .HasColumnType("numeric");
-
                     b.Property<string>("Number")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("numeric");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -150,7 +144,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
 
             modelBuilder.Entity("Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.SaleProduct", b =>
                 {
-                    b.HasOne("Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Product", "Product")
+                    b.HasOne("Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Product", "Product")
                         .WithMany("SaleIterItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -165,7 +159,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Product", b =>
+            modelBuilder.Entity("Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Product", b =>
                 {
                     b.Navigation("SaleIterItems");
                 });
