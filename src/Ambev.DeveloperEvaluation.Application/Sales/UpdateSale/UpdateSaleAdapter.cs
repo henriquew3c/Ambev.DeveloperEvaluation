@@ -1,17 +1,14 @@
-﻿using Ambev.DeveloperEvaluation.Common.Exception;
-using Ambev.DeveloperEvaluation.Common.Extensions;
+﻿using Ambev.DeveloperEvaluation.Common.Extensions;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Enums;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Factory;
 using FluentValidation;
 using FluentValidation.Results;
-using MediatR;
 
-namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
+namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
 {
-    public static class CreateSaleAdapter
+    public static class UpdateSaleAdapter
     {
-        public static Sale Map(this CreateSaleCommand request)
+        public static Sale Map(this UpdateSaleCommand request)
         {
             if (!request.BranchId.ValidGuid())
             {
@@ -27,7 +24,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
                 );
             }
 
-            return SaleFactory.GetSaleForCreate(request.CustomerId, request.BranchId, request.Date);
+            return SaleFactory.GetSaleForUpdate(request.CustomerId, request.BranchId, request.UpdateAt);
         }
     }
 }

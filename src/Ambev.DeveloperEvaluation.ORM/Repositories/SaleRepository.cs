@@ -2,6 +2,7 @@
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Sockets;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories;
 
@@ -35,6 +36,19 @@ public class SaleRepository : ISaleRepository
     }
 
     /// <summary>
+    /// Update a sale in the database
+    /// </summary>
+    /// <param name="sale">The sale to update</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The updated sale</returns>
+    public async Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken = default)
+    {
+        _context.Sales.Update(sale);
+        await _context.SaveChangesAsync(cancellationToken);
+        return sale;
+    }
+
+    /// <summary>
     /// Creates a new sale product in the database
     /// </summary>
     /// <param name="product">The sale product to create</param>
@@ -56,6 +70,13 @@ public class SaleRepository : ISaleRepository
     /// <returns>The sale if found, null otherwise</returns>
     public async Task<Sale?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await _context.Sales.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+        var sale = await _context.Sales.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+
+        if (sale == null) return null;
+
+        await _context.Entry(sale)
+            .Collection(i => i.Products).LoadAsync(cancellationToken);
+
+        return sale;
     }
 }

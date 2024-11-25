@@ -18,6 +18,14 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns>The created user</returns>
         Task<Sale> CreateAsync(Sale sale, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update a sale in the repository
+        /// </summary>
+        /// <param name="sale">The sale to update</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>The updated user</returns>
+        Task<Sale> UpdateAsync(Sale sale, CancellationToken cancellationToken = default);
 
 
         /// <summary>

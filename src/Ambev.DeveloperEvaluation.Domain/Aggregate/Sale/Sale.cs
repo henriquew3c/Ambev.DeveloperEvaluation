@@ -4,6 +4,7 @@ using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Enums;
 using FluentValidation;
 using Ambev.DeveloperEvaluation.Common.Exception;
 using FluentValidation.Results;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.Product;
 
 namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
 {
@@ -71,14 +72,6 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
         public DateTime? FinishedAt { get; private set; }
 
         /// <summary>
-        /// Verify if sale product exists into sale.
-        /// </summary>
-        private bool SaleProductExists(SaleProduct product)
-        {
-            return _products.Any(p => p.ProductId == product.ProductId);
-        }
-
-        /// <summary>
         /// Add sale product into sale.
         /// </summary>
         public void AddProduct(SaleProduct saleProduct)
@@ -87,43 +80,73 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
 
             saleProduct.AssociateSale(Id);
 
-            if (SaleProductExists(saleProduct))
+            if (!SaleProductExists(saleProduct))
             {
-                var saleProductExistent = _products.FirstOrDefault(p => p.ProductId == saleProduct.ProductId);
+                _products.Add(saleProduct);
+                return;
+            }
+            
+            IncreaseQuantityIntoSaleProductExistent(saleProduct);
+        }
 
-                if (saleProductExistent == null)
-                    return;
+        private void IncreaseQuantityIntoSaleProductExistent(SaleProduct saleProduct)
+        {
+            var saleProductExistent = _products.FirstOrDefault(p => p.ProductId == saleProduct.ProductId);
 
-                _products.Remove(saleProductExistent);
+            if (saleProductExistent == null)
+                return;
+
+            var newQuantity = saleProductExistent.Quantity + saleProduct.Quantity;
+
+            if (newQuantity > 20)
+            {
+                throw new ValidationException(
+                    new List<ValidationFailure> { new ValidationFailure("products", $"Product's identical quantity not be more 20.") }
+                );
             }
 
-            _products.Add(saleProduct);
+            saleProductExistent.Quantity = newQuantity;
+
+        }
+
+        /// <summary>
+        /// Clear sale product into sale.
+        /// </summary>
+        public void ClearProducts()
+        {
+            _products.Clear();
+        }
+
+        /// <summary>
+        /// Verify if sale product exists into sale.
+        /// </summary>
+        private bool SaleProductExists(SaleProduct product)
+        {
+            return _products.Any(p => p.ProductId == product.ProductId);
         }
 
         /// <summary>
         /// Get new sale.
         /// </summary>
 
-        public Sale(string customerId, DateTime createAt, string branchId)
+        public Sale(string customerId, string branchId, DateTime? createAt = null, DateTime? updateAt = null)
         {
-            if (!customerId.ValidGuid())
-            {
-                this.ValidationResult.Errors.Add(new ValidationFailure(customerId, "Invalid user id."));
-                throw new BusinessException();
-            }
-            
-            if (!branchId.ValidGuid())
-            {
-                this.ValidationResult.Errors.Add(new ValidationFailure(branchId, "Invalid branch id."));
-                throw new BusinessException();
-            }
 
             Status = SaleStatus.Pending;
             _products = [];
             Number = new Random().Next(1, 10000).ToString();
-            CreateAt = createAt;
-            CustomerId = Guid.Parse(customerId);
-            BranchId = Guid.Parse(branchId);
+
+            if (createAt.HasValue)
+                CreateAt = createAt.Value;
+
+            if (updateAt.HasValue)
+                UpdateAt = updateAt.Value;
+
+            if (customerId.ValidGuid())
+                CustomerId = Guid.Parse(customerId);
+
+            if (branchId.ValidGuid())
+                BranchId = Guid.Parse(branchId);
         }
 
 
@@ -171,13 +194,34 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
         public void Cancel()
         {
             Status = SaleStatus.Cancelled;
-            CancellationAt = DateTime.Now;
+            CancellationAt = DateTime.Now.ToUniversalTime();
         }
 
         public void Finish()
         {
             Status = SaleStatus.Finish;
-            FinishedAt = DateTime.Now;
+            FinishedAt = DateTime.Now.ToUniversalTime();
+        }
+
+        public void Update(Sale newSale, SaleStatus newStatus)
+        {
+            CustomerId = newSale.CustomerId;
+            BranchId = newSale.BranchId;
+            UpdateAt = newSale.UpdateAt;
+
+            switch (newStatus)
+            {
+                case SaleStatus.Cancelled:
+                    Cancel();
+                    break;
+                case SaleStatus.Finish:
+                    Finish();
+                    break;
+                case SaleStatus.Unknown:
+                case SaleStatus.Pending:
+                default:
+                    break;
+            }
         }
     }
 }
