@@ -48,7 +48,39 @@ Database:
 2) Run the command update-database to create tables in database. If it doesn't work look the appsettings conection string. By default the port postgresql 5432 is exposed.
 3) Use swagger (or another toool) to create your user. Post to /api/Users
 
- ### Create one product to usage in sale. Post to /api/Product. 
+#User
+
+ ### Create User. Post to /api/User 
+   
+Request:
+
+```json
+{
+  "username": "Henrque Souza",
+  "password": "dC<88?9n^!,r",
+  "phone": "+556393409293",
+  "email": "email@gvalid.com",
+  "status": 1,
+  "role": 1
+}
+```
+
+ ### Auth User. Post to /api/Auth 
+   
+Request:
+
+```json
+{
+   {
+    email": "email@gvalid.com",
+    "password": "dC<88?9n^!,r"
+  }
+}
+```
+
+#Product
+
+### Create one product to usage in sale. Post to /api/Product. 
    
 Request:
 ```json
@@ -71,6 +103,9 @@ Responde:
     "errors": []
 }
 ```
+
+#Sale
+
  ### Create sales. Post to /api/Sale. 
    
 Request:
