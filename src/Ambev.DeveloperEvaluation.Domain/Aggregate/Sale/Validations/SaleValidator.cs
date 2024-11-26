@@ -7,8 +7,8 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Validations
         public CreateSaleValidator()
         {
             RuleFor(sale => sale.CreateAt)
-                .NotNull()
-                .WithMessage("Date cannot be null.");
+                .GreaterThan(DateTime.MinValue)
+                .WithMessage("Date cannot is valid.");
 
             RuleFor(user => user.CustomerId).SetValidator(new CustomerValidator());
             RuleFor(user => user.BranchId).SetValidator(new CustomerValidator());
@@ -19,9 +19,9 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Validations
     {
         public UpdateSaleValidator()
         {
-            RuleFor(sale => sale.UpdateAt)
-                .NotNull()
-                .WithMessage("Date cannot be null.");
+            RuleFor(sale => sale.CreateAt)
+                .GreaterThan(DateTime.MinValue)
+                .WithMessage("Date cannot is valid.");
 
             RuleFor(user => user.CustomerId).SetValidator(new CustomerValidator());
             RuleFor(user => user.BranchId).SetValidator(new CustomerValidator());
