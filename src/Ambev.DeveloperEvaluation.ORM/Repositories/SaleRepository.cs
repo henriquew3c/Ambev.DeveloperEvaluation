@@ -1,8 +1,7 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Sockets;
+using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Enums;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories;
 
@@ -71,6 +70,29 @@ public class SaleRepository : ISaleRepository
     public async Task<Sale?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var sale = await _context.Sales.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+
+        if (sale == null) return null;
+
+        await _context.Entry(sale)
+            .Collection(i => i.Products).LoadAsync(cancellationToken);
+
+        return sale;
+    }
+    
+    /// <summary>
+    /// Retrieves a sale by their unique identifier
+    /// </summary>
+    /// <param name="id">The unique identifier of the sale</param>
+    /// <param name="cancellationToken">Cancellation token</param>
+    /// <returns>The sale if found, null otherwise</returns>
+    public async Task<Sale?> GetActiveSaleByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var sale = await _context.Sales
+            .Where(o => o.Id == id)
+            .Where(o => o.Status != SaleStatus.Cancelled)
+            .Where(o => o.Status != SaleStatus.Finish)
+            .Where(o => o.Status != SaleStatus.Deleted)
+            .FirstOrDefaultAsync(cancellationToken);
 
         if (sale == null) return null;
 

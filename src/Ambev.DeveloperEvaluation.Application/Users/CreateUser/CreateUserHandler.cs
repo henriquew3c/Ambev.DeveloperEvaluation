@@ -2,7 +2,6 @@
 using MediatR;
 using FluentValidation;
 using Ambev.DeveloperEvaluation.Common.Security;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Repository;
 
 namespace Ambev.DeveloperEvaluation.Application.Users.CreateUser;

@@ -1,10 +1,5 @@
-﻿using Ambev.DeveloperEvaluation.Common.Exception;
-using Ambev.DeveloperEvaluation.Common.Extensions;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
+﻿using Ambev.DeveloperEvaluation.Common.Extensions;
 using Ambev.DeveloperEvaluation.Domain.Common;
-using FluentValidation;
-using FluentValidation.Results;
-using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
 
 namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale;
 

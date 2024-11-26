@@ -1,5 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Enums;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Validations;
+﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Validations;
 
 namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Factory
 {

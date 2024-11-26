@@ -1,5 +1,4 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Validations;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Validations;
 
 namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Factory
 {

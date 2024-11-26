@@ -1,6 +1,5 @@
 using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
 using Ambev.DeveloperEvaluation.Unit.Domain.Entities.TestData;
 using Xunit;
 

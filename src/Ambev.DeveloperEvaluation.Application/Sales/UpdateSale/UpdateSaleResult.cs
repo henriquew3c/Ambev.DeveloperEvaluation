@@ -1,6 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale;
-
-namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
+﻿namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
 /// <summary>
 /// Represents the response returned after successfully creating a new sale.

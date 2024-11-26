@@ -1,7 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Common.Validation;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.DTO;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
+﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.DTO;
 using FluentValidation;
 using MediatR;
 

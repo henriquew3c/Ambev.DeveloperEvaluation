@@ -1,9 +1,7 @@
-using Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository;
 using AutoMapper;
 using MediatR;
 using FluentValidation;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Repository;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 

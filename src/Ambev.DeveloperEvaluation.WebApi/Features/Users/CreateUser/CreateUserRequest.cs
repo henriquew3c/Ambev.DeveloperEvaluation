@@ -1,6 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
-using System.Data;
+﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Users.CreateUser;
 

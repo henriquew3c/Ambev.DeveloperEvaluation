@@ -1,5 +1,3 @@
-using System;
-
 namespace Ambev.DeveloperEvaluation.Common.Security;
 
 /// <summary>

@@ -1,5 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Enums;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Validations
 {

@@ -1,5 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
+﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
 using FluentValidation;
 
 namespace Ambev.DeveloperEvaluation.Domain.Aggregate.User.Validations;

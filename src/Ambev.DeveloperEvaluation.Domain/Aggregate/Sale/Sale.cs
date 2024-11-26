@@ -2,9 +2,7 @@
 using Ambev.DeveloperEvaluation.Domain.Common;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Enums;
 using FluentValidation;
-using Ambev.DeveloperEvaluation.Common.Exception;
 using FluentValidation.Results;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Product;
 
 namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
 {
@@ -72,6 +70,11 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
         public DateTime? FinishedAt { get; private set; }
 
         /// <summary>
+        /// Gets the sale's deleted date.
+        /// </summary>
+        public DateTime? DeletedAt { get; private set; }
+
+        /// <summary>
         /// Add sale product into sale.
         /// </summary>
         public void AddProduct(SaleProduct saleProduct)
@@ -85,10 +88,13 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
                 _products.Add(saleProduct);
                 return;
             }
-            
+
             IncreaseQuantityIntoSaleProductExistent(saleProduct);
         }
 
+        /// <summary>
+        /// Increase quantity into sale product existent.
+        /// </summary>
         private void IncreaseQuantityIntoSaleProductExistent(SaleProduct saleProduct)
         {
             var saleProductExistent = _products.FirstOrDefault(p => p.ProductId == saleProduct.ProductId);
@@ -191,18 +197,27 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
 
         }
 
-        public void Cancel()
+        /// <summary>
+        /// Cancel sale.
+        /// </summary>
+        private void Cancel()
         {
             Status = SaleStatus.Cancelled;
             CancellationAt = DateTime.Now.ToUniversalTime();
         }
 
-        public void Finish()
+        /// <summary>
+        /// Finish sale.
+        /// </summary>
+        private void Finish()
         {
             Status = SaleStatus.Finish;
             FinishedAt = DateTime.Now.ToUniversalTime();
         }
 
+        /// <summary>
+        /// Update sale.
+        /// </summary>
         public void Update(Sale newSale, SaleStatus newStatus)
         {
             CustomerId = newSale.CustomerId;
@@ -217,11 +232,21 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
                 case SaleStatus.Finish:
                     Finish();
                     break;
+                case SaleStatus.Deleted:
                 case SaleStatus.Unknown:
                 case SaleStatus.Pending:
                 default:
                     break;
             }
+        }
+
+        /// <summary>
+        /// Soft delete sale.
+        /// </summary>
+        public void SoftDelete()
+        {
+            Status = SaleStatus.Deleted;
+            DeletedAt = DateTime.Now.ToUniversalTime();
         }
     }
 }

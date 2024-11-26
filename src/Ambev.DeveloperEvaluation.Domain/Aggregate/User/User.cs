@@ -1,5 +1,4 @@
 using Ambev.DeveloperEvaluation.Common.Security;
-using Ambev.DeveloperEvaluation.Common.Validation;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
 using Ambev.DeveloperEvaluation.Domain.Common;
 

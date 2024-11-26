@@ -8,7 +8,6 @@ using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
-using System.IO.Pipelines;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale;
 
@@ -55,25 +54,11 @@ public class UpdateSaleHandler : IRequestHandler<UpdateSaleCommand, UpdateSaleRe
             );
         }
 
-        var oldSale = await _saleRepository.GetByIdAsync(Guid.Parse(command.SaleId), cancellationToken);
+        var oldSale = await _saleRepository.GetActiveSaleByIdAsync(Guid.Parse(command.SaleId), cancellationToken);
         if (oldSale == null)
         {
             throw new ValidationException(
-                new List<ValidationFailure> { new ValidationFailure(command.SaleId, $"Sale not found.") }
-            );
-        }
-
-        if(oldSale.Status == SaleStatus.Cancelled)
-        {
-            throw new ValidationException(
-                new List<ValidationFailure> { new ValidationFailure(command.SaleId, $"Sale is cancelled. Update not allowed.") }
-            );
-        }
-
-        if (oldSale.Status == SaleStatus.Finish)
-        {
-            throw new ValidationException(
-                new List<ValidationFailure> { new ValidationFailure(command.SaleId, $"Sale is finish. Update not allowed.") }
+                new List<ValidationFailure> { new ValidationFailure(command.SaleId, $"No active sale found.") }
             );
         }
 

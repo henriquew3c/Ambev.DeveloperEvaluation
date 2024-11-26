@@ -1,5 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Common.Validation;
-using FluentValidation.Internal;
+﻿using FluentValidation.Internal;
 using FluentValidation;
 using FluentValidation.Results;
 

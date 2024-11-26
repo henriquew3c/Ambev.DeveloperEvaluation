@@ -1,4 +1,3 @@
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Validations;
 using Ambev.DeveloperEvaluation.Unit.Domain.Entities.TestData;
 using FluentValidation.TestHelper;

@@ -1,8 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Common.Validation;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.DTO;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Products.CreateProduct;

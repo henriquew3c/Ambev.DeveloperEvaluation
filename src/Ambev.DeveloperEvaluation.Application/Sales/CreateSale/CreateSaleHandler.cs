@@ -1,5 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Common.Extensions;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Repository;
+﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Repository;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Factory;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository;

@@ -1,11 +1,8 @@
-﻿using Ambev.DeveloperEvaluation.Common.Exception;
-using Ambev.DeveloperEvaluation.Common.Extensions;
+﻿using Ambev.DeveloperEvaluation.Common.Extensions;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Enums;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Factory;
 using FluentValidation;
 using FluentValidation.Results;
-using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.CreateSale
 {

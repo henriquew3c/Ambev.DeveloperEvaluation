@@ -1,5 +1,3 @@
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
-
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 
 /// <summary>
