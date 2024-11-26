@@ -12,6 +12,9 @@ using Ambev.DeveloperEvaluation.WebApi.Features.Users.GetUser;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.UpdateSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.DeleteSale;
+using Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
+using Ambev.DeveloperEvaluation.Common.Pagination;
+using Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
 {
@@ -134,6 +137,26 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
                 Success = true,
                 Message = "Sale deleted successfully"
             });
+        }
+
+        /// <summary>
+        /// Retrieves all sales.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A response with the list of all sales.</returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(ApiResponseWithData<PaginatedResponse<GetAllSalesResponse>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAllSales(int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default)
+        {
+            var command = new GetAllSalesCommand
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            var response = await _mediator.Send(command, cancellationToken);
+            var paginatedList = new PaginatedList<GetAllSalesResponse>(_mapper.Map<List<GetAllSalesResponse>>(response), response.TotalCount, pageNumber, pageSize);
+            return OkPaginated(paginatedList);
         }
 
 

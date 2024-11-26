@@ -1,12 +1,12 @@
-using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
+﻿using Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetAllSales;
 
 /// <summary>
-/// API response model for GetUser operation
+/// API response model for GetAllSales operation.
 /// </summary>
-public class GetSaleResponse
-{ 
+public class GetAllSalesResponse
+{
     /// <summary>
     /// The unique identifier of the created sale.
     /// </summary>
@@ -41,4 +41,9 @@ public class GetSaleResponse
     /// Gets the sale's discount percent.
     /// </summary>
     public decimal DiscountPercent { get; private set; }
+
+    /// <summary>
+    /// The list of sale products.
+    /// </summary>
+    public List<GetAllSaleProductResult> Products { get; set; } = new();
 }

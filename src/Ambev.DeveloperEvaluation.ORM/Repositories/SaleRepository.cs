@@ -2,6 +2,7 @@
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository;
 using Microsoft.EntityFrameworkCore;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Enums;
+using Ambev.DeveloperEvaluation.Common.Pagination;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories;
 
@@ -100,5 +101,18 @@ public class SaleRepository : ISaleRepository
             .Collection(i => i.Products).LoadAsync(cancellationToken);
 
         return sale;
+    }
+
+    /// <summary>
+    /// Retrieves a paginated list of sales from the database.
+    /// </summary>
+    /// <param name="pageNumber">The page number to retrieve.</param>
+    /// <param name="pageSize">The number of items per page.</param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>A paginated list of sales.</returns>
+    public async Task<PaginatedList<Sale>> GetPagedSalesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default)
+    {
+        var query = _context.Sales.AsNoTracking().Include(s => s.Products);
+        return await PaginatedList<Sale>.CreateAsync(query, pageNumber, pageSize);
     }
 }
