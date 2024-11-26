@@ -48,7 +48,7 @@ Database:
 2) Run the command update-database to create tables in database. If it doesn't work look the appsettings conection string. By default the port postgresql 5432 is exposed.
 3) Use swagger (or another toool) to create your user. Post to /api/Users
 
-##User
+## User
 
  ### Create User. Post to /api/User 
    
@@ -78,7 +78,7 @@ Request:
 }
 ```
 
-##Product
+## Product
 
 ### Create one product to usage in sale. Post to /api/Product. 
    
@@ -104,7 +104,7 @@ Responde:
 }
 ```
 
-##Sale
+## Sale
 
  ### Create sales. Post to /api/Sale. 
    
