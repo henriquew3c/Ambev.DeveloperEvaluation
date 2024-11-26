@@ -14,7 +14,7 @@ public abstract class BaseEntity : IComparable<BaseEntity>
     /// <summary>
     /// Gets the update at.
     /// </summary>
-    public DateTime UpdateAt { get; set; }
+    public DateTime? UpdateAt { get; set; }
 
     // <summary>
     /// Gets the entity validate status.

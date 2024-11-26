@@ -19,7 +19,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Validations
     {
         public UpdateSaleValidator()
         {
-            RuleFor(sale => sale.CreateAt)
+            RuleFor(sale => sale.UpdateAt)
                 .GreaterThan(DateTime.MinValue)
                 .WithMessage("Date cannot is valid.");
 
