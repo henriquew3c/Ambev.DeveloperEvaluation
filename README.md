@@ -65,7 +65,67 @@ Request:
 }
 ```
 
- ### Auth User. Post to /api/Auth 
+Respose:
+
+```json
+{
+    "data": {
+        "id": "5f3cd73d-ba5f-4dbd-85f5-ebb871eb6e71",
+        "username": "Henrique Souza",
+        "email": "email@valid.com",
+        "phone": "+556393409293",
+        "role": 1,
+        "status": 1
+    },
+    "success": true,
+    "message": "User created successfully",
+    "errors": []
+}
+```
+
+## Get User. Get to /api/User/{id}
+
+Response:
+
+```json
+{
+  "data": {
+    "data": {
+      "id": "5f3cd73d-ba5f-4dbd-85f5-ebb871eb6e71",
+      "username": "",
+      "email": "email@valid.com",
+      "phone": "+5563992028333",
+      "role": 1,
+      "status": 1
+    },
+    "success": true,
+    "message": "User retrieved successfully",
+    "errors": []
+  },
+  "success": true,
+  "message": "",
+  "errors": []
+}
+```
+
+## Delete User. Delete to /api/User/{id}
+
+```json
+{
+  "data": {
+    "success": true,
+    "message": "User deleted successfully",
+    "errors": []
+  },
+  "success": true,
+  "message": "",
+  "errors": []
+}
+```
+
+## Authorize
+
+### Auth User. Post to /api/Auth 
    
 Request:
 
@@ -78,17 +138,40 @@ Request:
 }
 ```
 
+Response:
+
+```json
+{
+  "data": {
+    "data": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1ZjNjZDczZC1iYTVmLTRkYmQtODVmNS1lYmI4NzFlYjZlNzEiLCJ1bmlxdWVfbmFtZSI6IkhlbnJpcXVlIFNpbHZhIiwicm9sZSI6IkN1c3RvbWVyIiwibmJmIjoxNzMyNjQ0NzAzLCJleHAiOjE3MzI2NzM1MDMsImlhdCI6MTczMjY0NDcwM30.mSpA37DyiIG9jHf5vcLF1EmQJEzdqVMzknJNEoLh-DE",
+      "email": "email@valid.com",
+      "name": "Henrique Silva",
+      "role": "Customer"
+    },
+    "success": true,
+    "message": "User authenticated successfully",
+    "errors": []
+  },
+  "success": true,
+  "message": "",
+  "errors": []
+}
+```
+
 ## Product
 
 ### Create one product to usage in sale. Post to /api/Product. 
    
 Request:
+
 ```json
 {
   "name": "Fantastic Cotton Hat",
   "price": 100
 }
 ```
+
 Responde:
 
 ```json
@@ -106,7 +189,7 @@ Responde:
 
 ## Sale
 
- ### Create sales. Post to /api/Sale. 
+### Create sales. Post to /api/Sale. 
    
 Request:
 
@@ -145,7 +228,7 @@ Response:
 }
 ```
 
- ### Update sales. Put to /api/Sale. 
+### Update sale. Put to /api/Sale. 
    
 Request:
 
@@ -195,7 +278,7 @@ Response:
 
 PS.: Satatus supported: 1 (Pending), 2 (Cancelled) or 3 (Finish). 
 
- ### Get one sale. Get to /api/Sale/{id}. 
+### Get sale. Get to /api/Sale/{id}. 
    
 Response:
 
@@ -334,3 +417,22 @@ Response:
   "errors": []
 }
 ```
+
+### Delete Sale. Delete to /api/Sale/{id}
+
+Response:
+
+```json
+{
+    "data": {
+        "success": true,
+        "message": "Sale deleted successfully",
+        "errors": []
+    },
+    "success": true,
+    "message": "",
+    "errors": []
+}
+```
+
+PS.: Row not removed, only soft delete update. Status changed to Deleted and DeleteAt filled.
