@@ -51,14 +51,15 @@ Database:
  ### Create one product to usage in sale. Post to /api/Product. 
    
 Request:
-
+```json
 {
   "name": "Fantastic Cotton Hat",
   "price": 100
 }
-
+```
 Responde:
 
+```json
 {
     "data": {
         "id": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
@@ -69,11 +70,12 @@ Responde:
     "message": "Product created successfully",
     "errors": []
 }
-
+```
  ### Create sales. Post to /api/Sale. 
    
 Request:
 
+```json
 {
   "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
   "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
@@ -85,9 +87,11 @@ Request:
     }
   ]
 }
+```
 
 Response:
 
+```json
 "data": {
         "id": "e8666c40-f913-410e-8c77-537b66559996",
         "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
@@ -104,11 +108,13 @@ Response:
     "message": "Sale created successfully",
     "errors": []
 }
+```
 
  ### Update sales. Put to /api/Sale. 
    
 Request:
 
+```json
 {
   "saleId": "e8666c40-f913-410e-8c77-537b66559996",
   "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
@@ -122,9 +128,11 @@ Request:
     }
   ]
 }
+```
 
 Response:
 
+```json
 {
   "data": {
       "data": {
@@ -148,13 +156,15 @@ Response:
     "message": "",
     "errors": []
 }
- 
+```
+
 PS.: Satatus supported: 1 (Pending), 2 (Cancelled) or 3 (Finish). 
 
  ### Get one sale. Get to /api/Sale/{id}. 
    
 Response:
 
+```json
 {
     "data": {
         "data": {
@@ -174,6 +184,7 @@ Response:
     "message": "",
     "errors": []
 }
+```
 
 ### Get all sales. Get to /api/Sales. 
 
@@ -181,6 +192,7 @@ Params: pageNumber, pageSize. Defalt values: 1, 10
 
 Response:
 
+```json
 {
   "data": {
     "currentPage": 1,
@@ -286,3 +298,4 @@ Response:
   "message": "",
   "errors": []
 }
+```
