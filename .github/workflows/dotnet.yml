@@ -28,5 +28,5 @@ jobs:
       working-directory: ./src/Ambev.DeveloperEvaluation.WebApi
       run: dotnet build --no-restore
     - name: Test
-      working-directory: ./src/tests/Ambev.DeveloperEvaluation.Unit
+      working-directory: ./src/Ambev.DeveloperEvaluation.WebApi
       run: dotnet test --no-build --verbosity normal
