@@ -1,8 +1,4 @@
 using Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
-using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Product;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
 using Bogus;
 
 namespace Ambev.DeveloperEvaluation.Unit.Domain.Entities.TestData;

@@ -1,9 +1,6 @@
 using Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
-using Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
-using Ambev.DeveloperEvaluation.Common.Security;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Repository;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Product;
-using Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Repository;
 using Ambev.DeveloperEvaluation.Unit.Application.TestData;
 using AutoMapper;
 using FluentAssertions;

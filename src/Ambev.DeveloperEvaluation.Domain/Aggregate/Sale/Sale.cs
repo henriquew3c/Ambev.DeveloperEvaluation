@@ -81,6 +81,13 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale
         {
             if (!saleProduct.IsValid) return;
 
+            if (saleProduct.Quantity > 20)
+            {
+                throw new ValidationException(
+                    new List<ValidationFailure> { new ValidationFailure("products", $"Product's identical quantity not be more 20.") }
+                );
+            }
+
             saleProduct.AssociateSale(Id);
 
             if (!SaleProductExists(saleProduct))

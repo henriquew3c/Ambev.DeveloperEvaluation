@@ -1,5 +1,3 @@
-using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
-
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale;
 
 /// <summary>

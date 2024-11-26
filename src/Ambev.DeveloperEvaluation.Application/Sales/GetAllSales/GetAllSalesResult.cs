@@ -1,6 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
-
-namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
+﻿namespace Ambev.DeveloperEvaluation.Application.Sales.GetAllSales;
 
 /// <summary>
 /// Represents the result of a GetAllSales operation.

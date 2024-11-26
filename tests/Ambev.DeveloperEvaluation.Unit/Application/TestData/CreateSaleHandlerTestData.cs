@@ -1,4 +1,4 @@
-using Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
+using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 using Bogus;
 
 namespace Ambev.DeveloperEvaluation.Unit.Application.TestData;
@@ -8,27 +8,28 @@ namespace Ambev.DeveloperEvaluation.Unit.Application.TestData;
 /// This class centralizes all test data generation to ensure consistency
 /// across test cases and provide both valid and invalid data scenarios.
 /// </summary>
-public static class CreateProductHandlerTestData
+public static class CreateSaleHandlerTestData
 {
     /// <summary>
-    /// Configures the Faker to generate valid CreateProductCommand object.
+    /// Configures the Faker to generate valid CreateSaleCommand object.
     /// The generated users will have valid:
     /// The generated user will have all properties populated with valid values
     /// that meet the system's validation requirements.
     /// </summary>
-    private static readonly Faker<CreateProductCommand> CreateProductCommandFaker = new Faker<CreateProductCommand>()
-        .RuleFor(p => p.Name, f => f.Commerce.ProductName())
-        .RuleFor(p => p.Price, f => decimal.Parse(f.Commerce.Price()));
+    private static readonly Faker<CreateSaleCommand> CreateSaleCommandFaker = new Faker<CreateSaleCommand>()
+        .RuleFor(p => p.BranchId, f => f.Random.Guid().ToString())
+        .RuleFor(p => p.CustomerId, f => f.Random.Guid().ToString())
+        .RuleFor(p => p.Date, f => f.Date.Recent());
 
 
     /// <summary>
-    /// Generates a valid Product entity with randomized data.
+    /// Generates a valid Sale entity with randomized data.
     /// The generated user will have all properties populated with valid values
     /// that meet the system's validation requirements.
     /// </summary>
-    /// <returns>A valid Product entity with randomly generated data.</returns>
-    public static CreateProductCommand GenerateValidCommand()
+    /// <returns>A valid Sale entity with randomly generated data.</returns>
+    public static CreateSaleCommand GenerateValidCommand()
     {
-        return CreateProductCommandFaker.Generate();
+        return CreateSaleCommandFaker.Generate();
     }
 }

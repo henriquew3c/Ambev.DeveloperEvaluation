@@ -1,10 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Enums;
-using Ambev.DeveloperEvaluation.Unit.Domain.Entities.TestData;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ambev.DeveloperEvaluation.Unit.Domain.Entities.TestData;
 using Ambev.DeveloperEvaluation.Application.Products.CreateProduct;
 using Xunit;
 
