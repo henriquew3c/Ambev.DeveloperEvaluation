@@ -132,7 +132,7 @@ Request:
 ```json
 {
    {
-    email": "email@gvalid.com",
+    "email": "email@gvalid.com",
     "password": "dC<88?9n^!,r"
   }
 }
