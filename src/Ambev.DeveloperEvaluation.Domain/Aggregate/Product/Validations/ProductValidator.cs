@@ -6,9 +6,10 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Product.Validations
     {
         public ProductValidator()
         {
-            RuleFor(product => product.Name)
+            RuleFor(user => user.Name)
                 .NotEmpty()
-                .WithMessage("The name cannot be null.");
+                .MinimumLength(3).WithMessage("Name must be at least 3 characters long.")
+                .MaximumLength(50).WithMessage("Name cannot be longer than 50 characters.");
 
             RuleFor(product => product.Price)
                 .GreaterThan(0)

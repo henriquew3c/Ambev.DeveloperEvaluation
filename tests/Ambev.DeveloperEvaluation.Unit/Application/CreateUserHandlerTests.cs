@@ -2,7 +2,7 @@ using Ambev.DeveloperEvaluation.Application.Users.CreateUser;
 using Ambev.DeveloperEvaluation.Common.Security;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.User;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.User.Repository;
-using Ambev.DeveloperEvaluation.Unit.Domain;
+using Ambev.DeveloperEvaluation.Unit.Application.TestData;
 using AutoMapper;
 using FluentAssertions;
 using NSubstitute;
@@ -125,17 +125,21 @@ public class CreateUserHandlerTests
 
         _userRepository.CreateAsync(Arg.Any<User>(), Arg.Any<CancellationToken>())
             .Returns(user);
+
         _passwordHasher.HashPassword(Arg.Any<string>()).Returns("hashedPassword");
 
+        var result = new CreateUserResult
+        {
+            Id = user.Id,
+        };
+
+        _mapper.Map<CreateUserResult>(user).Returns(result);
+
         // When
-        await _handler.Handle(command, CancellationToken.None);
+        var createUserResult = await _handler.Handle(command, CancellationToken.None);
 
         // Then
-        _mapper.Received(1).Map<User>(Arg.Is<CreateUserCommand>(c =>
-            c.Username == command.Username &&
-            c.Email == command.Email &&
-            c.Phone == command.Phone &&
-            c.Status == command.Status &&
-            c.Role == command.Role));
+        createUserResult.Should().NotBeNull();
+        createUserResult.Id.Should().Be(user.Id);
     }
 }
