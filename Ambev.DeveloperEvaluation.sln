@@ -54,6 +54,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{E839980C-0F35-452F-A678-16BC7DB67B8A}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Ambev.DeveloperEvaluation.UI", "src\Ambev.DeveloperEvaluation.UI\Ambev.DeveloperEvaluation.UI.esproj", "{184F9D58-62B7-4413-8990-956D1BA51B3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -100,6 +104,12 @@ Global
 		{4AF79501-F785-4B98-8EE5-54BE186D67A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AF79501-F785-4B98-8EE5-54BE186D67A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AF79501-F785-4B98-8EE5-54BE186D67A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{184F9D58-62B7-4413-8990-956D1BA51B3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{184F9D58-62B7-4413-8990-956D1BA51B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{184F9D58-62B7-4413-8990-956D1BA51B3A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{184F9D58-62B7-4413-8990-956D1BA51B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{184F9D58-62B7-4413-8990-956D1BA51B3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{184F9D58-62B7-4413-8990-956D1BA51B3A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +133,7 @@ Global
 		{7E1EFB67-8305-423C-9E09-CBC62465FA18} = {040F270A-3788-4E88-99A6-F236286DE3E7}
 		{C0DDDE39-2D65-4AF5-90D4-F35D87A79009} = {040F270A-3788-4E88-99A6-F236286DE3E7}
 		{2B484022-3EF7-4BAB-ADB8-849F9E419EDD} = {C8926C5D-2F67-4F90-982B-FFB45F517D65}
+		{184F9D58-62B7-4413-8990-956D1BA51B3A} = {E839980C-0F35-452F-A678-16BC7DB67B8A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {13EAB81A-C6B2-4C22-B4DE-C6603FC445B6}
