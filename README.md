@@ -14,22 +14,15 @@ See [Frameworks](/.doc/frameworks.md)
 1. Run `docker-compose up` to initiate the containers.
 
 __Exemple__:
-<p align="center">
-    <video width="600" controls>
-        <source src="assets/movies/docker-compose-up-command.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+
+https://github.com/user-attachments/assets/7500f020-5820-445e-b05e-d05c2c6a6b04
 
 2. Run the command `update-database` to create tables in the database. If it doesn't work, check the appsettings connection string. By default, the PostgreSQL port 5432 is exposed.
 
 Exemple:
-<p align="center">
-    <video width="600" controls>
-        <source src="assets/movies/update-database-command.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+
+https://github.com/user-attachments/assets/8e7e7d87-b5fe-46e1-b7b0-6a8c08f41a78
+
 
 3. Use Swagger (or another tool) to create your user. Post to `/api/Users`.
 
