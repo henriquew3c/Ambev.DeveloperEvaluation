@@ -16,12 +16,7 @@ See Frameworks [Frameworks](/.doc/frameworks.md)
 1. Run `docker-compose up` to initiate the containers.
 
 Exemple:
-<p align="center">
-    <video width="600" controls>
-        <source src="assets/docker-compose-up-command.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+https://github.com/henriquew3c/Ambev.DeveloperEvaluation/blob/master/assets/movies/docker-compose-up-command.mp4
 
 2. Run the command `update-database` to create tables in the database. If it doesn't work, check the appsettings connection string. By default, the PostgreSQL port 5432 is exposed.
 
