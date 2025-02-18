@@ -20,9 +20,6 @@ Response:
 PS.: Row not removed, only soft delete update. Status changed to Deleted and DeleteAt filled.
 
 Exemple:
-<p align="center">
-    <video width="600" controls>
-        <source src="../assets/movies/get-sales.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+
+https://github.com/user-attachments/assets/21aa9825-8f0f-4e9c-a5f8-f4d15ea70404
+
