@@ -29,9 +29,6 @@ Responde:
 ```
 
 Exemple:
-<p align="center">
-    <video width="600" controls>
-        <source src="../assets/movies/create-product.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+
+https://github.com/user-attachments/assets/d708ec0b-a84a-4709-9784-3aae900e3bbe
+
