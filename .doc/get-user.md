@@ -1,3 +1,5 @@
+> [Home](/README.md) > API > Exemples > Get User
+
 ## User
 
 ## Get User. Get to /api/User/{id}
@@ -26,9 +28,6 @@ Response:
 ```
 
 Exemple:
-<p align="center">
-    <video width="600" controls>
-        <source src="../assets/movies/get-user.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+
+https://github.com/user-attachments/assets/3b42e1d7-0eb4-4e58-a1bb-b1ea8750d704
+

@@ -1,3 +1,5 @@
+> [Home](/README.md) > API > Exemples > Create sale
+
 ## Sale
 
 ### Create sales. Post to /api/Sale.
@@ -41,9 +43,6 @@ Response:
 ```
 
 Exemple:
-<p align="center">
-    <video width="600" controls>
-        <source src="../assets/movies/create-sale.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+
+https://github.com/user-attachments/assets/833c3832-7e87-4067-915b-9b6119291038
+
