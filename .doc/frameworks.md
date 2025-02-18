@@ -1,3 +1,7 @@
+> [Home](/README.md) > Frameworks
+
+## List of the frameworks and libs of this project
+
 - **Mediator**: A behavioral design pattern that helps reduce chaotic dependencies between objects. It allows loose coupling by encapsulating object interaction.
   - Git: https://github.com/jbogard/MediatR
 
