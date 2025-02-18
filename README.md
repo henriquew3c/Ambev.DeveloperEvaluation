@@ -6,17 +6,20 @@
 
 This project is part of the selection process for senior programmers at NTT Data, and consists of implementing prototypes of an API for handling users, products, sales and authentication.
 
-## Technologies:
+See [Tech Stack](/.doc/tech-stack.md)\
+See [Frameworks](/.doc/frameworks.md)
 
-See Tech Stack [Tech Stack](/.doc/tech-stack.md)
-See Frameworks [Frameworks](/.doc/frameworks.md)
-
-## Instructions for use
+## Project setup
 
 1. Run `docker-compose up` to initiate the containers.
 
-Exemple:
-https://github.com/henriquew3c/Ambev.DeveloperEvaluation/blob/master/assets/movies/docker-compose-up-command.mp4
+__Exemple__:
+<p align="center">
+    <video width="600" controls>
+        <source src="assets/movies/docker-compose-up-command.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</p>
 
 2. Run the command `update-database` to create tables in the database. If it doesn't work, check the appsettings connection string. By default, the PostgreSQL port 5432 is exposed.
 
@@ -34,45 +37,109 @@ Exemple:
 
 ## User
 
-See [Create User. Post to /api/User](/.doc/create-your-user.md)
-
-## Get User. Get to /api/User/{id}
-
-See [Get User. Get to /api/User/{id}](/.doc/get-user.md)
-
-## Delete User. Delete to /api/User/{id}
-
-See [Delete User. Delete to /api/User/{id}](/.doc/delete-user.md)
-
-## Authorize
-
-### Auth User. Post to /api/Auth
-
-See [Auth User. Post to /api/Auth](/.doc/authorize.md)
+<table>
+  <tr>
+    <th>Functionaly</th>
+    <th>HTTP Method</th>
+    <th>Endpoint</th>
+    <th>Responses</th>
+    <th>:link:</th>
+  </tr>
+  <tr>
+    <td>Authorize</td>
+    <td>POST</td>
+    <td>/api/Auth</td>
+    <td>200 (OK) 400 (Bad Request) 401 (Unauthorized)</td>
+    <td><a href="/.doc/authorize.md" targer="__blank">exemple</a></td>
+  </tr>
+  <tr>
+    <td>Create</td>
+    <td>POST</td>
+    <td>/api/User</td>
+    <td>201 (Created) 400 (Bad Request)</td>
+    <td><a href="/.doc/create-your-user.md" targer="__blank">exemple</a></td>
+  </tr>
+  <tr>
+    <td>Get</td>
+    <td>GET</td>
+    <td>/api/User/{id}</td>
+    <td>200 (OK) 400 (Bad Request) 404 (Not Found)</td>
+    <td><a href="/.doc/get-user.md" targer="__blank">exemple</a></td>
+  </tr>
+  <tr>
+    <td>Delete</td>
+    <td>DELETE</td>
+    <td>/api/User/{id}</td>
+    <td>200 (OK) 400 (Bad Request) 404 (Not Found)</td>
+    <td><a href="/.doc/delete-user.md" targer="__blank">exemple</a></td>
+  </tr>
+</table>
 
 ## Product
 
-### Create one product to usage in sale. Post to /api/Product.
-
-See [Create one product to usage in sale. Post to /api/Product](/.doc/create-product.md)
+<table>
+  <tr>
+    <th>Functionaly</th>
+    <th>HTTP Method</th>
+    <th>Endpoint</th>
+    <th>Responses</th>
+    <th>:link:</th>
+  </tr>
+  <tr>
+    <td>Create</td>
+    <td>POST</td>
+    <td>/api/Product</td>
+    <td>201 (Created) 400 (Bad Request)</td>
+    <td><a href="/.doc/create-product.md" targer="__blank">exemple</a></td>
+  </tr>
+</table>
 
 ## Sale
 
-### Create sales. Post to /api/Sale.
-
-See [Create sales. Post to /api/Sale](/.doc/create-sale.md)
-
-### Update sale. Put to /api/Sale.
-
-See [Create sales. Post to /api/Sale](/.doc/update-sale.md)
-
-### Get sale. Get to /api/Sale/{id}.
-
-See [Get sale. Get to /api/Sale/{id}](/.doc/get-sale.md)
-
-### Get all sales. Get to /api/Sales.
-
-See [Get all sales. Get to /api/Sales](/.doc/get-sales.md)
+<table>
+  <tr>
+    <th>Functionaly</th>
+    <th>HTTP Method</th>
+    <th>Endpoint</th>
+    <th>Responses</th>
+    <th>:link:</th>
+  </tr>
+  <tr>
+    <td>Create</td>
+    <td>POST</td>
+    <td>/api/Sale</td>
+    <td>201 (Created) 400 (Bad Request)</td>
+    <td><a href="/.doc/create-sale.md" targer="__blank">exemple</a></td>
+  </tr>
+  <tr>
+    <td>Update</td>
+    <td>PUT</td>
+    <td>/api/Sale</td>
+    <td>200 (OK) 400 (Bad Request) 404 (Not Found)</td>
+    <td><a href="/.doc/update-sale.md" targer="__blank">exemple</a></td>
+  </tr>
+  <tr>
+    <td>Get</td>
+    <td>GET</td>
+    <td>/api/Sale/{id}</td>
+    <td>200 (OK) 400 (Bad Request) 404 (Not Found)</td>
+    <td><a href="/.doc/get-sale.md" targer="__blank">exemple</a></td>
+  </tr>
+  <tr>
+    <td>List</td>
+    <td>GET</td>
+    <td>/api/Sale</td>
+    <td>200 (OK) 400 (Bad Request) 404 (Not Found)</td>
+    <td><a href="/.doc/get-sales.md" targer="__blank">exemple</a></td>
+  </tr>
+   <tr>
+    <td>Delete</td>
+    <td>DELETE</td>
+    <td>/api/Sale/{id}</td>
+    <td>200 (OK) 400 (Bad Request) 404 (Not Found)</td>
+    <td><a href="/.doc/get-sales.md" targer="__blank">exemple</a></td>
+  </tr>
+</table>
 
 ## Additional Improvements
 

@@ -1,3 +1,5 @@
+> [Home](/README.md) > API > Exemples > Delete user
+
 ## User
 
 ## Delete User. Delete to /api/User/{id}

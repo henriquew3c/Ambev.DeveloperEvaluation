@@ -1,3 +1,5 @@
+> [Home](/README.md) > API > Exemples > Authorize
+
 ## Authorize
 
 ### Auth User. Post to /api/Auth

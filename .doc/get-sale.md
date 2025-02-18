@@ -1,3 +1,5 @@
+> [Home](/README.md) > API > Exemples > Get sale
+
 ## Sale
 
 ### Get sale. Get to /api/Sale/{id}.

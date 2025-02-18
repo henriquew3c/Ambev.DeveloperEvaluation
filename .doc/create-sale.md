@@ -1,3 +1,5 @@
+> [Home](/README.md) > API > Exemples > Create sale
+
 ## Sale
 
 ### Create sales. Post to /api/Sale.

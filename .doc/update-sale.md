@@ -1,4 +1,4 @@
-## Sale
+> [Home](/README.md) > API > Exemples > Update sale
 
 ### Update sale. Put to /api/Sale.
 
