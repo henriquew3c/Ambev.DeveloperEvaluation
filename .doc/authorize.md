@@ -37,9 +37,6 @@ Response:
 ```
 
 Exemple:
-<p align="center">
-    <video width="600" controls>
-        <source src="../assets/movies/auth.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+
+https://github.com/user-attachments/assets/edd76a8e-522b-41f3-9b98-894fc1dee332
+
