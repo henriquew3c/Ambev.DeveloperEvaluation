@@ -29,9 +29,6 @@ Response:
 ```
 
 Exemple:
-<p align="center">
-    <video width="600" controls>
-        <source src="../assets/movies/get-sale-by-id.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+
+https://github.com/user-attachments/assets/e1625d72-0620-4d45-993f-0b6c6499db46
+
