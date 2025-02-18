@@ -113,3 +113,9 @@ Response:
   "errors": []
 }
 ```
+
+Exemple:
+
+https://github.com/user-attachments/assets/5987c656-ef71-405f-a9ef-51eeb29e16fd
+
+
