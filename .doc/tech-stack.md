@@ -1,3 +1,7 @@
+> [Home](/README.md) > Tech Stack
+
+## List of tech stack of this project
+
 Backend:
 
 - **.NET 8.0**: A free, cross-platform, open source developer platform for building many different types of applications.
