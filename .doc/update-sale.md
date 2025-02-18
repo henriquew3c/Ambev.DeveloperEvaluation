@@ -52,9 +52,6 @@ Response:
 PS.: Satatus supported: 1 (Pending), 2 (Cancelled) or 3 (Finish).
 
 Exemple:
-<p align="center">
-    <video width="600" controls>
-        <source src="../assets/movies/update-sale.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+
+https://github.com/user-attachments/assets/beead841-7524-4062-bd4c-0a9dd1158e16
+
