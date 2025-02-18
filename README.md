@@ -1,438 +1,124 @@
-# Prototype Sales API
+<p align="center">
+  <img src="assets/img/logo.png" alt="Logo" />
+</p>
 
-Implementation of a Restfull API prototype for sales handling.
+# This Project
 
-## Tech Stack
+This project is part of the selection process for senior programmers at NTT Data, and consists of implementing prototypes of an API for handling users, products, sales and authentication.
 
-Technologies in this project:
+## Technologies:
 
-Backend:
-- **.NET 8.0**: A free, cross-platform, open source developer platform for building many different types of applications.
-  - Git: https://github.com/dotnet/core
-- **C#**: A modern object-oriented programming language developed by Microsoft.
-  - Git: https://github.com/dotnet/csharplang
-
-Testing:
-- **xUnit**: A free, open source, community-focused unit testing tool for the .NET Framework.
-  - Git: https://github.com/xunit/xunit
-
-Databases:
-- **PostgreSQL**: A powerful, open source object-relational database system.
-  - Git: https://github.com/postgres/postgres
-- **MongoDB**: A general purpose, document-based, distributed database.
-  - Git: https://github.com/mongodb/mongo
- 
-## Frameworks
-
-Frameworks in this project:
-
-Backend:
-- **Mediator**: A behavioral design pattern that helps reduce chaotic dependencies between objects. It allows loose coupling by encapsulating object interaction.
-  - Git: https://github.com/jbogard/MediatR
-- **Automapper**: A convention-based object-object mapper that simplifies the process of mapping one object to another.
-  - Git: https://github.com/AutoMapper/AutoMapper
-
-Testing:
-- **Faker**: A library for generating fake data for testing purposes, allowing for more realistic and diverse test scenarios.
-  - Git: https://github.com/bchavez/Bogus
-- **NSubstitute**: A friendly substitute for .NET mocking libraries, used for creating test doubles in unit testing.
-  - Git: https://github.com/nsubstitute/NSubstitute
-
-Database:
-- **EF Core**: Entity Framework Core, a lightweight, extensible, and cross-platform version of Entity Framework, used for data access and object-relational mapping.
-  - Git: https://github.com/dotnet/efcore
+See Tech Stack [Tech Stack](/.doc/tech-stack.md)
+See Frameworks [Frameworks](/.doc/frameworks.md)
 
 ## Instructions for use
 
-1) Run docker compose to iniciate the conteiners
-2) Run the command update-database to create tables in database. If it doesn't work look the appsettings conection string. By default the port postgresql 5432 is exposed.
-3) Use swagger (or another toool) to create your user. Post to /api/Users
+1. Run `docker-compose up` to initiate the containers.
+
+Exemple:
+<p align="center">
+    <video width="600" controls>
+        <source src="assets/docker-compose-up-command.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</p>
+
+2. Run the command `update-database` to create tables in the database. If it doesn't work, check the appsettings connection string. By default, the PostgreSQL port 5432 is exposed.
+
+Exemple:
+<p align="center">
+    <video width="600" controls>
+        <source src="assets/movies/update-database-command.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</p>
+
+3. Use Swagger (or another tool) to create your user. Post to `/api/Users`.
+
+# Endpoints Prototype Sales API
 
 ## User
 
- ### Create User. Post to /api/User 
-   
-Request:
-
-```json
-{
-  "username": "Henrque Souza",
-  "password": "dC<88?9n^!,r",
-  "phone": "+556393409293",
-  "email": "email@gvalid.com",
-  "status": 1,
-  "role": 1
-}
-```
-
-Respose:
-
-```json
-{
-    "data": {
-        "id": "5f3cd73d-ba5f-4dbd-85f5-ebb871eb6e71",
-        "username": "Henrique Souza",
-        "email": "email@valid.com",
-        "phone": "+556393409293",
-        "role": 1,
-        "status": 1
-    },
-    "success": true,
-    "message": "User created successfully",
-    "errors": []
-}
-```
+See [Create User. Post to /api/User](/.doc/create-your-user.md)
 
 ## Get User. Get to /api/User/{id}
 
-Response:
-
-```json
-{
-  "data": {
-    "data": {
-      "id": "5f3cd73d-ba5f-4dbd-85f5-ebb871eb6e71",
-      "username": "",
-      "email": "email@valid.com",
-      "phone": "+5563992028333",
-      "role": 1,
-      "status": 1
-    },
-    "success": true,
-    "message": "User retrieved successfully",
-    "errors": []
-  },
-  "success": true,
-  "message": "",
-  "errors": []
-}
-```
+See [Get User. Get to /api/User/{id}](/.doc/get-user.md)
 
 ## Delete User. Delete to /api/User/{id}
 
-```json
-{
-  "data": {
-    "success": true,
-    "message": "User deleted successfully",
-    "errors": []
-  },
-  "success": true,
-  "message": "",
-  "errors": []
-}
-```
+See [Delete User. Delete to /api/User/{id}](/.doc/delete-user.md)
 
 ## Authorize
 
-### Auth User. Post to /api/Auth 
-   
-Request:
+### Auth User. Post to /api/Auth
 
-```json
-{
-   {
-    "email": "email@gvalid.com",
-    "password": "dC<88?9n^!,r"
-  }
-}
-```
-
-Response:
-
-```json
-{
-  "data": {
-    "data": {
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiI1ZjNjZDczZC1iYTVmLTRkYmQtODVmNS1lYmI4NzFlYjZlNzEiLCJ1bmlxdWVfbmFtZSI6IkhlbnJpcXVlIFNpbHZhIiwicm9sZSI6IkN1c3RvbWVyIiwibmJmIjoxNzMyNjQ0NzAzLCJleHAiOjE3MzI2NzM1MDMsImlhdCI6MTczMjY0NDcwM30.mSpA37DyiIG9jHf5vcLF1EmQJEzdqVMzknJNEoLh-DE",
-      "email": "email@valid.com",
-      "name": "Henrique Silva",
-      "role": "Customer"
-    },
-    "success": true,
-    "message": "User authenticated successfully",
-    "errors": []
-  },
-  "success": true,
-  "message": "",
-  "errors": []
-}
-```
+See [Auth User. Post to /api/Auth](/.doc/authorize.md)
 
 ## Product
 
-### Create one product to usage in sale. Post to /api/Product. 
-   
-Request:
+### Create one product to usage in sale. Post to /api/Product.
 
-```json
-{
-  "name": "Fantastic Cotton Hat",
-  "price": 100
-}
-```
-
-Responde:
-
-```json
-{
-    "data": {
-        "id": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-        "name": "Fantastic Cotton Hat",
-        "price": 100
-    },
-    "success": true,
-    "message": "Product created successfully",
-    "errors": []
-}
-```
+See [Create one product to usage in sale. Post to /api/Product](/.doc/create-product.md)
 
 ## Sale
 
-### Create sales. Post to /api/Sale. 
-   
-Request:
+### Create sales. Post to /api/Sale.
 
-```json
-{
-  "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-  "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-  "date": "2024-11-25T02:20:06.442Z",
-  "products": [
-    {
-      "productId": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-      "quantity": 20
-    }
-  ]
-}
+See [Create sales. Post to /api/Sale](/.doc/create-sale.md)
+
+### Update sale. Put to /api/Sale.
+
+See [Create sales. Post to /api/Sale](/.doc/update-sale.md)
+
+### Get sale. Get to /api/Sale/{id}.
+
+See [Get sale. Get to /api/Sale/{id}](/.doc/get-sale.md)
+
+### Get all sales. Get to /api/Sales.
+
+See [Get all sales. Get to /api/Sales](/.doc/get-sales.md)
+
+## Additional Improvements
+
+Here are some potential improvements for this project:
+
+1. **Enhanced Documentation**: Expand the documentation to include more detailed setup instructions, examples, and troubleshooting tips.
+2. **Automated Testing**: Implement more comprehensive unit and integration tests to ensure the reliability of the API.
+3. **Continuous Integration/Continuous Deployment (CI/CD)**: Set up a CI/CD pipeline to automate testing and deployment processes.
+4. **API Rate Limiting**: Implement rate limiting to prevent abuse and ensure fair usage of the API.
+5. **Error Handling**: Improve error handling to provide more informative and user-friendly error messages.
+6. **Security Enhancements**: Add more security features such as input validation, encryption, and improved authentication mechanisms.
+7. **Performance Optimization**: Optimize the API for better performance, including database query optimization and caching strategies.
+8. **Scalability**: Design the API to be more scalable to handle increased load and traffic.
+9. **User Interface**: Develop a user-friendly front-end interface to interact with the API.
+10. **Logging and Monitoring**: Implement logging and monitoring to track the API's performance and usage.
+
+These improvements can help enhance the functionality, security, and user experience of the project.
+
+### Testing
+
+To run the tests, use the following command:
+
+```bash
+dotnet test
 ```
 
-Response:
+### Contributing
 
-```json
-"data": {
-        "id": "e8666c40-f913-410e-8c77-537b66559996",
-        "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "createAt": "2024-11-25T02:20:06.442Z",
-        "products": [
-            {
-                "productId": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-                "quantity": 20
-            }
-        ]
-    },
-    "success": true,
-    "message": "Sale created successfully",
-    "errors": []
-}
-```
+If you would like to contribute to this project, please follow these steps:
 
-### Update sale. Put to /api/Sale. 
-   
-Request:
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
 
-```json
-{
-  "saleId": "e8666c40-f913-410e-8c77-537b66559996",
-  "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-  "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-  "updateAt": "2024-11-25T21:15:11.262Z",
-"status": 2,
-  "products": [
-    {
-      "productId": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-      "quantity": 15
-    }
-  ]
-}
-```
+### License
 
-Response:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-```json
-{
-  "data": {
-      "data": {
-          "id": "e8666c40-f913-410e-8c77-537b66559996",
-          "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-          "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-          "createAt": "2024-11-25T02:20:06.442Z",
-          "products": [
-               {
-                  "productId": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-                  "quantity": 15
-                }
-          ],
-          "status": "Pending"
-      },
-      "success": true,
-      "message": "Sale updated successfully",
-      "errors": []
-    },
-    "success": true,
-    "message": "",
-    "errors": []
-}
-```
+### Contact
 
-PS.: Satatus supported: 1 (Pending), 2 (Cancelled) or 3 (Finish). 
-
-### Get sale. Get to /api/Sale/{id}. 
-   
-Response:
-
-```json
-{
-    "data": {
-        "data": {
-            "id": "e8666c40-f913-410e-8c77-537b66559996",
-            "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-            "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-            "createAt": "2024-11-25T02:20:06.442Z",
-            "totalAmount": 1600.00,
-            "discountAmount": 400.00,
-            "discountPercent": 0.20
-        },
-        "success": true,
-        "message": "Sale retrieved successfully",
-        "errors": []
-    },
-    "success": true,
-    "message": "",
-    "errors": []
-}
-```
-
-### Get all sales. Get to /api/Sales. 
-
-Params: pageNumber, pageSize. Defalt values: 1, 10
-
-Response:
-
-```json
-{
-  "data": {
-    "currentPage": 1,
-    "totalPages": 1,
-    "totalCount": 6,
-    "data": [
-      {
-        "id": "4a47b943-fe83-46fb-93d5-ca9d705c97a8",
-        "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "createAt": "2024-11-25T02:20:06.442Z",
-        "totalAmount": 1520,
-        "discountAmount": 380,
-        "discountPercent": 0.2,
-        "products": [
-          {
-            "productId": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-            "quantity": 19
-          }
-        ]
-      },
-      {
-        "id": "8b48a961-4c64-417d-9985-dcaec3ee60dc",
-        "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "createAt": "2024-11-25T02:20:06.442Z",
-        "totalAmount": 1520,
-        "discountAmount": 380,
-        "discountPercent": 0.2,
-        "products": [
-          {
-            "productId": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-            "quantity": 19
-          }
-        ]
-      },
-      {
-        "id": "9166aa1e-4c2d-4946-9902-ecd271633811",
-        "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "createAt": "2024-11-25T02:20:06.442Z",
-        "totalAmount": 1520,
-        "discountAmount": 380,
-        "discountPercent": 0.2,
-        "products": [
-          {
-            "productId": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-            "quantity": 19
-          }
-        ]
-      },
-      {
-        "id": "9496297f-1850-4df0-994a-fdd6f4f09301",
-        "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "createAt": "2024-11-25T02:20:06.442Z",
-        "totalAmount": 1600,
-        "discountAmount": 400,
-        "discountPercent": 0.2,
-        "products": [
-          {
-            "productId": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-            "quantity": 20
-          }
-        ]
-      },
-      {
-        "id": "e0b097a5-5ba2-40ce-a929-d62a06617ab9",
-        "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "createAt": "2024-11-25T02:20:06.442Z",
-        "totalAmount": 1600,
-        "discountAmount": 400,
-        "discountPercent": 0.2,
-        "products": [
-          {
-            "productId": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-            "quantity": 20
-          }
-        ]
-      },
-      {
-        "id": "e8666c40-f913-410e-8c77-537b66559996",
-        "customerId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "branchId": "122c618e-adb6-4dd6-a545-b48b9d42117a",
-        "createAt": "2024-11-25T02:20:06.442Z",
-        "totalAmount": 1600,
-        "discountAmount": 400,
-        "discountPercent": 0.2,
-        "products": [
-          {
-            "productId": "262baec5-50e8-4abb-8e7a-6c6470d3560a",
-            "quantity": 20
-          }
-        ]
-      }
-    ],
-    "success": true,
-    "message": "",
-    "errors": []
-  },
-  "success": true,
-  "message": "",
-  "errors": []
-}
-```
-
-### Delete Sale. Delete to /api/Sale/{id}
-
-Response:
-
-```json
-{
-    "data": {
-        "success": true,
-        "message": "Sale deleted successfully",
-        "errors": []
-    },
-    "success": true,
-    "message": "",
-    "errors": []
-}
-```
-
-PS.: Row not removed, only soft delete update. Status changed to Deleted and DeleteAt filled.
+For any questions or feedback, please contact [Honório Henrique](mailto:henriquew3c@gmail.com).
