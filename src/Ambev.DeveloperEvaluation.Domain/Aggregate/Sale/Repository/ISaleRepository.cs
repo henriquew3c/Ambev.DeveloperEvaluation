@@ -1,4 +1,5 @@
 ﻿using Ambev.DeveloperEvaluation.Common.Pagination;
+using Ambev.DeveloperEvaluation.Domain.Events;
 
 namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository
 {
@@ -55,5 +56,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>A paginated list of sales.</returns>
         Task<PaginatedList<Sale>> GetPagedSalesAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default);
+
+        void PublishSaleRegisteredEvent(SaleRegisteredEventMessage message);
     }
 }

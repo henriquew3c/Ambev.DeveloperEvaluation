@@ -2,6 +2,7 @@
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Factory;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository;
+using Ambev.DeveloperEvaluation.Domain.Events;
 using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
@@ -23,7 +24,7 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
     /// </summary>
     /// <param name="saleRepository">The sale repository</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    public CreateSaleHandler(ISaleRepository saleRepository, 
+    public CreateSaleHandler(ISaleRepository saleRepository,
         IMapper mapper,
         IProductRepository productRepository)
     {
@@ -60,7 +61,33 @@ public class CreateSaleHandler : IRequestHandler<CreateSaleCommand, CreateSaleRe
 
         var createdSale = await _saleRepository.CreateAsync(sale, cancellationToken);
         var result = _mapper.Map<CreateSaleResult>(createdSale);
+
+        PublishEvent(result, createdSale);
+
         return result;
+    }
+
+    private void PublishEvent(CreateSaleResult? result, Sale createdSale)
+    {
+        if (result == null)
+            return;
+
+        // Send a domain message to RabbitMQ indicating the successful sale registration
+        var message = new SaleRegisteredEventMessage()
+        {
+            SaleId = createdSale.Id,
+            CustomerId = createdSale.CustomerId,
+            TotalAmount = createdSale.TotalAmount,
+            Products = createdSale.Products.Select(p => new SaleProductEventMessage()
+            {
+                ProductId = p.ProductId,
+                Quantity = p.Quantity,
+                Total = p.Total
+            }).ToList()
+        };
+        
+        _saleRepository.PublishSaleRegisteredEvent(message);
+
     }
 
     /// <summary>
