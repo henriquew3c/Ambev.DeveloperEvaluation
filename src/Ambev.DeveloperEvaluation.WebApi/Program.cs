@@ -8,6 +8,7 @@ using Ambev.DeveloperEvaluation.ORM;
 using Ambev.DeveloperEvaluation.WebApi.Middleware;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using RabbitMQ.Client;
 using Serilog;
 
 namespace Ambev.DeveloperEvaluation.WebApi;
@@ -35,6 +36,13 @@ public class Program
                     b => b.MigrationsAssembly("Ambev.DeveloperEvaluation.ORM")
                 )
             );
+
+            builder.Services.AddSingleton<IConnectionFactory>(sp => new ConnectionFactory
+            {
+                HostName = builder.Configuration["RabbitMQ:HostName"] ?? string.Empty,
+                UserName = builder.Configuration["RabbitMQ:UserName"] ?? string.Empty,
+                Password = builder.Configuration["RabbitMQ:Password"] ?? string.Empty
+            });
 
             builder.Services.AddJwtAuthentication(builder.Configuration);
 

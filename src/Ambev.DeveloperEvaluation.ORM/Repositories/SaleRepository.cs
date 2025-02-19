@@ -3,6 +3,12 @@ using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Repository;
 using Microsoft.EntityFrameworkCore;
 using Ambev.DeveloperEvaluation.Domain.Aggregate.Sale.Enums;
 using Ambev.DeveloperEvaluation.Common.Pagination;
+using Ambev.DeveloperEvaluation.Domain.Events;
+using System.Text.Json;
+using System.Text;
+using Microsoft.Extensions.Logging;
+using RabbitMQ.Client;
+using System.Threading.Channels;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories;
 
@@ -12,14 +18,20 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories;
 public class SaleRepository : ISaleRepository
 {
     private readonly DefaultContext _context;
+    private readonly IModel _channel;
+    private readonly ILogger<SaleRepository> _logger;
 
     /// <summary>
     /// Initializes a new instance of SaleRepository
     /// </summary>
     /// <param name="context">The database context</param>
-    public SaleRepository(DefaultContext context)
+    /// <param name="channel">The RabbitMQ channel</param>
+    /// <param name="logger">The logger instance</param>
+    public SaleRepository(DefaultContext context, IModel channel, ILogger<SaleRepository> logger)
     {
         _context = context;
+        _channel = channel;
+        _logger = logger;
     }
 
     /// <summary>
@@ -79,7 +91,7 @@ public class SaleRepository : ISaleRepository
 
         return sale;
     }
-    
+
     /// <summary>
     /// Retrieves a sale by their unique identifier
     /// </summary>
@@ -114,5 +126,28 @@ public class SaleRepository : ISaleRepository
     {
         var query = _context.Sales.AsNoTracking().Include(s => s.Products);
         return await PaginatedList<Sale>.CreateAsync(query, pageNumber, pageSize);
+    }
+
+    public void PublishSaleRegisteredEvent(SaleRegisteredEventMessage message)
+    {
+        try
+        {
+            var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(message));
+
+            _channel.BasicPublish(exchange: "",
+                routingKey: "sale_registered_queue",
+                basicProperties: null,
+                body: body); 
+            
+            Console.WriteLine($" [x] Sent {message}");
+
+            _logger.LogInformation("SaleRegisteredEventMessage published successfully: {SaleId}", message.SaleId);
+
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error publishing SaleRegisteredEventMessage: {SaleId}", message.SaleId);
+            // Todo: Aqui você pode adicionar lógica adicional, como tentar novamente ou notificar um sistema de monitoramento
+        }
     }
 }
