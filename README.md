@@ -53,6 +53,20 @@ These steps will set up and start the project locally.
 > [!TIP]
 > Use Swagger (or another tool) to create your user. Post to `/api/Users`.
 
+### View message events into RabbitMQ queue
+
+RabbitMQ is a message broker that allows applications to communicate with each other by sending and receiving messages through queues. A topic in RabbitMQ is a type of exchange that routes messages to one or more queues based on a routing key.
+
+> [!IMPORTANT]
+> User and password into .env.
+
+> [!TIP]
+> Actualy the system has only one domain event ao criar one new sale.
+
+To access and view message events in a RabbitMQ queue, follow these steps:
+
+1. **Access RabbitMQ Management Console**: Open the RabbitMQ Management Console by navigating to `http://localhost:15672/` in your web browser. Log in with the default credentials (`guest`/`guest`).
+
 # Endpoints Prototype Sales API
 
 ## User
