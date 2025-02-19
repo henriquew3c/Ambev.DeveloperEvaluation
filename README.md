@@ -9,22 +9,49 @@ This project is part of the selection process for senior programmers at NTT Data
 See [Tech Stack](/.doc/tech-stack.md)\
 See [Frameworks](/.doc/frameworks.md)
 
-## Project setup
+## Starting the Project
 
-1. Run `docker-compose up` to initiate the containers.
+To start the project, follow the steps below:
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/your-repository.git
+    cd your-repository
+    ```
+
+2. **Set up environment variables**:
+    Create a `.env` file at the root of the project and add the necessary variables, such as the database connection string.
+
+3. **Start the Docker containers**:
+    ```bash
+    docker-compose up
+    ```
 
 __Exemple__:
 
 https://github.com/user-attachments/assets/7500f020-5820-445e-b05e-d05c2c6a6b04
 
-2. Run the command `update-database` to create tables in the database. If it doesn't work, check the appsettings connection string. By default, the PostgreSQL port 5432 is exposed.
+4. **Update the database**:
+    ```bash
+    dotnet ef database update
+    ```
 
-Exemple:
+__Exemple__:
 
 https://github.com/user-attachments/assets/8e7e7d87-b5fe-46e1-b7b0-6a8c08f41a78
 
+5. **Run the application**:
+    ```bash
+    dotnet run
+    ```
 
-3. Use Swagger (or another tool) to create your user. Post to `/api/Users`.
+6. **Access the application**:
+    Open your browser and go to `http://localhost:5000` to view the running application.
+
+These steps will set up and start the project locally.
+
+> [!TIP]
+> Use Swagger (or another tool) to create your user. Post to `/api/Users`.
 
 # Endpoints Prototype Sales API
 
